@@ -61,6 +61,12 @@ public class CrawDataController {
         return "ful";
     }
 
+    @RequestMapping("/justSoS")
+    public String justSoS(){
+
+        return "just f y";
+    }
+
 
 
 }
