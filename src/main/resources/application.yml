@@ -1,0 +1,49 @@
+server:
+  port: 8084
+#  servlet:
+#    context-path: /rjgf/api
+spring:
+  application:
+    name: three-cost
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 2048MB
+      max-request-size: 2048MB
+  thymeleaf:
+    enabled: true  #开启thymeleaf视图解析
+    encoding: utf-8  #编码
+    prefix: classpath:/static/  #前缀
+    cache: false  #是否使用缓存
+    mode: HTML  #严格的HTML语法模式
+    #suffix: .html  #后缀名
+
+#mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath:mapper/**/*.xml
+  global-config:
+    # 关闭MP3.0自带的banner
+    banner: false
+    db-config:
+      #主键类型  0:"数据库ID自增",1:"该类型为未设置主键类型", 2:"用户输入ID",3:"全局唯一ID (数字类型唯一ID)", 4:"全局唯一ID UUID",5:"字符串全局唯一ID (idWorker 的字符串表示)";
+      id-type: 4
+      # 默认数据库表下划线命名
+      table-underline: true
+    # 返回类型为Map,显示null对应的字段
+    call-setters-on-nulls: true
+  codec:
+    max-in-memory-size: 2048
+  mail:
+    default-encoding: utf-8
+
+open:
+  dir: temp
+
+######## 日志输出等级
+logging:
+  level:
+    root: info
+  file:
+    path: ./log

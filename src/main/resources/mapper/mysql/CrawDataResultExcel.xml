@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rjgf.threecost.crawdata.mapper.CrawDataResultExcelMapper" >
+    <resultMap type="com.rjgf.threecost.crawdata.entity.CrawDataResultExcel" id="crawDataResultExcel">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+
+        <result column="province" property="province" jdbcType="VARCHAR"/>
+        <result column="city" property="city" jdbcType="VARCHAR"/>
+        <result column="county" property="county" jdbcType="VARCHAR"/>
+        <result column="area" property="area" jdbcType="VARCHAR"/>
+        <result column="plot" property="plot" jdbcType="VARCHAR"/>
+        <result column="longitude" property="longitude" jdbcType="VARCHAR"/>
+        <result column="latitude" property="latitude" jdbcType="VARCHAR"/>
+        <result column="aver_price" property="aver_price" jdbcType="VARCHAR"/>
+        <result column="aver_rent" property="aver_rent" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, province, city, county, area, plot, longitude, latitude, aver_price, aver_rent
+    </sql>
+
+</mapper>

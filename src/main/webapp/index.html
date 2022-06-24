@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#btn").click(function(){
+                $.ajax({
+                    url:"http://localhost:8088/test",
+                    type:"get",
+                    // dataType:"json",
+                    success:function(data){
+                        //定义一个变量，用于保存结果
+                        $("div").html(data);
+                        $.ajax({
+                            url: "testPost",
+                            type: "post",
+                            data: {"test1":data},
+                            success:function (data3){
+                                $("div").html(data3);
+                            }
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <input id="btn" type="button" value="获取数据" />
+    <div></div>
+</body>
+
+</html>
