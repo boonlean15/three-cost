@@ -56,6 +56,11 @@ public class CrawDataController {
         return "添加成功";
     }
 
+    @RequestMapping("testMappp")
+    public String hotfixMyProblem(){
+        return "ful";
+    }
+
 
 
 }
