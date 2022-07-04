@@ -7,6 +7,7 @@ import com.rjgf.threecost.crawdata.mapper.SbDataMapper;
 import com.rjgf.threecost.crawdata.service.CrawDataResultExcelService;
 import com.rjgf.threecost.crawdata.util.BaiduCoordinateConvertUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -65,6 +66,12 @@ public class CrawDataController {
     public String justSoS(){
 
         return "just f y";
+    }
+
+    @RequestMapping(value = "/testPost1", method = RequestMethod.POST)
+    public String testPosts(String test1){
+        System.out.println(test1);
+        return "8084 端口网站";
     }
 
 

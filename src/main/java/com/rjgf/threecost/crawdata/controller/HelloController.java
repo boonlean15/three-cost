@@ -23,5 +23,17 @@ public class HelloController {
         return "8084 端口网站";
     }
 
+    @RequestMapping(value = "/testPost1", method = RequestMethod.POST)
+    public String testPosts(String test1){
+        System.out.println(test1);
+        return "8084 端口网站";
+    }
+
+    @RequestMapping(value = "/testPost13", method = RequestMethod.POST)
+    public String testPosts3(String test1){
+        System.out.println(test1);
+        return "8084 端口网站";
+    }
+
 
 }
