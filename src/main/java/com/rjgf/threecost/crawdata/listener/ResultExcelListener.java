@@ -46,8 +46,12 @@ public class ResultExcelListener extends AnalysisEventListener<CrawDataResultExc
     public void invoke(CrawDataResultExcel data, AnalysisContext context) {
 
         log.info("解析到一条数据:{}", JSON.toJSONString(data));
+        data.setId(UUIDUtils.getShortUUID("tc"));
 //        cachedDataList.add(data);
-        transList.add(data);
+        if(transList.size() < 2000){
+            transList.add(data);
+        }
+
         // 达到BATCH_COUNT了，需要去存储一次数据库，防止数据几万条数据在内存，容易OOM
 //        if (cachedDataList.size() >= BATCH_COUNT) {
 //            saveData();
@@ -68,30 +72,32 @@ public class ResultExcelListener extends AnalysisEventListener<CrawDataResultExc
      */
     private void saveData() {
 
-        List<CrawDataResultExcel> crawDataResultExcels = transList.subList(0, 200);
-        crawDataResultExcels.forEach(item -> {
-            if(StringUtils.isBlank(item.getLongitude()) || StringUtils.isBlank(item.getLatitude())){
-                return;
-            }
-            BaiduReCoordinate bdReCoordinate = getBDReCoordinate(Double.parseDouble(item.getLongitude()), Double.parseDouble(item.getLatitude()));
-            if(bdReCoordinate != null){
-                String district = bdReCoordinate.getDistrict();
-                String city = bdReCoordinate.getCity();
-                Optional.ofNullable(district).ifPresent(v -> item.setCounty(v));
-                Optional.ofNullable(city).ifPresent(v -> item.setCity(v));
-                item.setId(UUIDUtils.getShortUUID("tc"));
-            }
-        });
-        log.info("{}条数据，开始存储数据库！", crawDataResultExcels.size());
+//        List<CrawDataResultExcel> crawDataResultExcels = transList.subList(0, 200);
+//        crawDataResultExcels.forEach(item -> {
+//            if(StringUtils.isBlank(item.getLongitude()) || StringUtils.isBlank(item.getLatitude())){
+//                return;
+//            }
+//            BaiduReCoordinate bdReCoordinate = getBDReCoordinate(Double.parseDouble(item.getLongitude()), Double.parseDouble(item.getLatitude()));
+//            if(bdReCoordinate != null){
+//                String district = bdReCoordinate.getDistrict();
+//                String city = bdReCoordinate.getCity();
+//                Optional.ofNullable(district).ifPresent(v -> item.setCounty(v));
+//                Optional.ofNullable(city).ifPresent(v -> item.setCity(v));
+//                item.setId(UUIDUtils.getShortUUID("tc"));
+//            }
+//        });
+//        log.info("{}条数据，开始存储数据库！", crawDataResultExcels.size());
 
 //        EasyExcel.write(excelFileName, CrawDataResultExcel.class).sheet("baidu").doWrite(crawDataResultExcels);
 //        List<List<CrawDataResultExcel>> split = com.rjgf.threecost.crawdata.util.ListUtils.split(crawDataResultExcels, 1000);
 //        split.forEach(item -> {
-            crawDataResultExcelService.saveBatch(crawDataResultExcels);
+//            crawDataResultExcelService.saveBatch(crawDataResultExcels);
 //        });
-        log.info("存储数据库成功！");
-        EasyExcel.write(excelFileName, CrawDataResultExcel.class).sheet("baidu").doWrite(crawDataResultExcels);
-        log.info("写数据------到excel");
+//        log.info("存储数据库成功！");
+//        EasyExcel.write(excelFileName, CrawDataResultExcel.class).sheet("baidu").doWrite(crawDataResultExcels);
+//        log.info("写数据------到excel");
+        crawDataResultExcelService.saveBatch(transList);
+
     }
 
     private BaiduReCoordinate getBDReCoordinate(double longitude, double latitude){

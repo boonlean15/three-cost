@@ -21,4 +21,11 @@
         id, province, city, county, area, plot, longitude, latitude, aver_price, aver_rent
     </sql>
 
+    <select id="HandlerResult" fetchSize="500" resultType="com.rjgf.threecost.crawdata.entity.CrawDataResultExcel">
+        select
+            id, num, province, city, county, area, plot, longitude, latitude, aver_price, aver_rent
+        from
+            tc_craw_data
+    </select>
+
 </mapper>

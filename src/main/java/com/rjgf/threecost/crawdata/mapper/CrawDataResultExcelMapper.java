@@ -3,6 +3,7 @@ package com.rjgf.threecost.crawdata.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.rjgf.threecost.crawdata.entity.CrawDataResultExcel;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.cursor.Cursor;
 
 /**
  * @author linch
@@ -10,4 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CrawDataResultExcelMapper extends BaseMapper<CrawDataResultExcel> {
+
+    Cursor<CrawDataResultExcel> HandlerResult();
 }
