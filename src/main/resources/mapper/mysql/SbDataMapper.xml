@@ -5,6 +5,7 @@
     <resultMap type="com.rjgf.threecost.crawdata.entity.SbData" id="sbData">
         <result column="id" property="id" jdbcType="VARCHAR"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="insert_time" property="insert_time" jdbcType="DATE"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -20,4 +21,8 @@
         </foreach>
     </insert>
 
+
+    <select id="getDateStr" resultType="java.util.Date">
+        select insert_time from sb_data limit 1;
+    </select>
 </mapper>

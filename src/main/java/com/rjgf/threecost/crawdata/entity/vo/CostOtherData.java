@@ -22,4 +22,7 @@ public class CostOtherData {
     @ExcelProperty("注释")
     private String content;
 
+    @ExcelProperty("类型及长度")
+    private String prop;
+
 }

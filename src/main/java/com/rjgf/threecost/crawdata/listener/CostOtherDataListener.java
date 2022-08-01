@@ -24,9 +24,9 @@ public class CostOtherDataListener extends AnalysisEventListener<CostOtherData> 
     /**
      * 输出临时文件夹
      */
-    private final String OUT_PATH = "H:\\润建\\三费\\仓库已有的表结构\\仓库已有的表结构\\";
+    private final String OUT_PATH = "D:\\润建\\节电\\new demand\\";
 
-    private String excelFileName = OUT_PATH + "三费库表结构（物联网）建表语句.sql";
+    private String excelFileName = OUT_PATH + "节电建表语句.sql";
 
     private List<CostOtherData> dataList = new ArrayList<>();
 
@@ -63,8 +63,10 @@ public class CostOtherDataListener extends AnalysisEventListener<CostOtherData> 
         sb.append("CREATE TABLE ").append("\"public\".").append("\""+tableName+"\"").append(" (\n");
         dataList.forEach(item -> {
             String propName = item.getPropName();
+            String prop = item.getProp();
             sb.append("  \"").append(propName).append("\" ");
-            sb.append("varchar(50) COLLATE \"pg_catalog\".\"default\" NOT NULL,\n");
+            sb.append(prop);
+            sb.append(" COLLATE \"pg_catalog\".\"default\" NOT NULL,\n");
         });
         String sbStr = sb.substring(0,sb.length()-2);
         sb.delete(0,sb.length());

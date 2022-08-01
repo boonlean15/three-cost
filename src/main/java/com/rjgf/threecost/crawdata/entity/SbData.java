@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @TableName(value = "sb_data")
@@ -20,4 +21,7 @@ public class SbData extends Model<SbData> implements Serializable {
 
     @ExcelProperty("name")
     private String name;
+
+    @ExcelProperty("insert_time")
+    private Date insert_time;
 }

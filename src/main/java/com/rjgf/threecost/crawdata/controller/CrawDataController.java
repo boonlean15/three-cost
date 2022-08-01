@@ -9,6 +9,7 @@ import com.rjgf.threecost.crawdata.listener.ResultExcelListener;
 import com.rjgf.threecost.crawdata.mapper.CrawDataResultExcelMapper;
 import com.rjgf.threecost.crawdata.mapper.SbDataMapper;
 import com.rjgf.threecost.crawdata.service.CrawDataResultExcelService;
+import com.rjgf.threecost.crawdata.service.SbDataService;
 import com.rjgf.threecost.crawdata.util.BaiduCoordinateConvertUtils;
 import org.apache.ibatis.cursor.Cursor;
 import org.apache.ibatis.session.SqlSession;
@@ -48,6 +49,9 @@ public class CrawDataController {
 
     @Resource
     SbDataMapper sbDataMapper;
+
+    @Resource
+    SbDataService sbDataService;
 
     @RequestMapping("/trans")
     public void transBD(){
@@ -240,9 +244,6 @@ public class CrawDataController {
     }
 
 
-    public void testAgain(){
-        
-    }
 
 
 }
