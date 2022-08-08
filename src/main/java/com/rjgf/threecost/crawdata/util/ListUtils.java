@@ -1,5 +1,7 @@
 package com.rjgf.threecost.crawdata.util;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import java.util.List;
  * @author linch
  * @create 2022/3/1 11:56
  */
+@Slf4j
 public class ListUtils {
 
     public static <T> List<List<T>> split(List<T> list, int pageSize) {
@@ -19,6 +22,7 @@ public class ListUtils {
                 listArray.add(subList);
             }
             subList.add(list.get(i));
+            log.info("");
         }
         return listArray;
     }
