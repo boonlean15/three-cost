@@ -27,6 +27,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
+import java.text.DateFormat;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.zip.CRC32;
@@ -213,6 +216,51 @@ public class TestTemplate {
 
     }
 
+    @Test
+    public void testGetNullName(){
+        Date lastDate = sbDataMapper.getDateStr();
+        log.info("date --------- " + lastDate);
+
+//        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+//
+//        Date lastDate = dateFormat1.parse("2022-08-12 09:10:18");
+        Date currentDate = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(lastDate);
+        int lastDay = calendar.get(Calendar.DATE);
+        int lastInt = calendar.get(Calendar.HOUR);
+        calendar.setTime(currentDate);
+        int currentDay = calendar.get(Calendar.DATE);
+        int currentInt = calendar.get(Calendar.HOUR);
+        if (lastInt >= 0 && lastInt <= 12) {
+            lastInt = 0;
+        }
+        if (lastInt > 12 && lastInt <= 24) {
+            lastInt = 1;
+        }
+        if (currentInt >= 0 && currentInt <= 12) {
+            currentInt = 0;
+        }
+        if (currentInt > 12 && currentInt <= 24) {
+            currentInt = 1;
+        }
+        //如果是当天，并且是相同上午或下午，则不重新
+        if(lastDay == currentDay && lastInt == currentInt){
+            System.out.println("如果是当天，并且是相同上午或下午，则不重新导入到omc_cache_source 表");
+//            return false;
+        }
+
+
+        System.out.println("lastDay ---- " + lastDay);
+
+        System.out.println("currentDay ---- " + currentDay);
+
+        System.out.println("lastInt ---- " + lastInt);
+
+        System.out.println("currentInt ---- " + currentInt);
+
+    }
+
 
 //    @Autowired
 //    DataSourceProperties dataSourceProperties;
@@ -261,8 +309,6 @@ public class TestTemplate {
         if("类型1".equals(myType) && (myNumber.equals(two) && hisNumber.equals(one))){
             log.info("与判断加或判断");
         }
-        URLConnection connection;
-        connection.connect();
 
     }
 

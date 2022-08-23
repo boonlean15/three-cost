@@ -8,4 +8,5 @@ import com.rjgf.threecost.crawdata.entity.CrawDataResultExcel;
  * @create 2022/3/1 11:26
  */
 public interface CrawDataResultExcelService extends IService<CrawDataResultExcel> {
+    String testMethod();
 }

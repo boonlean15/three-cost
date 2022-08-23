@@ -16,4 +16,6 @@ public interface SbDataMapper extends BaseMapper<SbData> {
     void clearSource();
 
     Date getDateStr();
+
+    String getTestTime();
 }

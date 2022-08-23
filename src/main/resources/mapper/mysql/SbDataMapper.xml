@@ -25,4 +25,10 @@
     <select id="getDateStr" resultType="java.util.Date">
         select insert_time from sb_data limit 1;
     </select>
+
+
+    <select id="getTestTime">
+        select name from sb_data order by name desc limit 1;
+    </select>
+
 </mapper>

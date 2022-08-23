@@ -11,4 +11,13 @@ public interface SbDataService extends IService<SbData> {
 
     void testAsync() throws FileNotFoundException;
 
+
+    void testRollback();
+
+    void testAsyncError();
+
+    void testAsyncDefault();
+
+    void testMethodException();
+
 }
